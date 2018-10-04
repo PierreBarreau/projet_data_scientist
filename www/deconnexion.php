@@ -1,3 +1,7 @@
+<?php
+session_start();
+	session_destroy();
+	?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -10,9 +14,6 @@
 	</head>
 	<body>
 	<?php
-	session_start();
-	session_destroy();
-
 	echo "<h1>Déconnecté</h1>";
 	echo '<p>Vous êtes à présent déconnecté <br />
 	Cliquez <a href="'.htmlspecialchars($_SERVER['HTTP_REFERER']).'">ici</a> 

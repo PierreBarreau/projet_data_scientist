@@ -1,5 +1,5 @@
 <?php
-# session_start (); // on démarre la session
+ session_start (); // on démarre la session
  ?>
 <!DOCTYPE html>
 <html>
@@ -15,7 +15,6 @@
 		<?php
 			if (!isset($_POST['pseudo'])) //On est dans la page de formulaire
 				{
-					session_start (); // on démarre la session
 					echo '<h1>Connectez vous</h1>
 					<br><br><form method="post" action="index.php">
 					<fieldset>
@@ -39,18 +38,19 @@
 						$lines = file('compte.txt');
 
 						foreach ($lines as $line_num => $line){
-							list($log, $pass)=split(';',$line);
+							list($log, $pass, $nom , $prenom , $rang)=explode(';',$line);
 							if ( $log == $_POST['pseudo'] && $pass == $_POST['password'] ){
 								$_SESSION['pseudo']	= $_POST['pseudo'];
 								$_SESSION['mdp'] = $_POST['password'];
-								#$_SESSION['level']	= 	rang du membre
-								#$_SESSION['id'] = id du membre
-								#echo $_SESSION['pseudo'];
+								$_SESSION['level']	= $rang;
+								$_SESSION['nom'] = $nom ;
+								$_SESSION['prenom'] = $prenom;
 								header('Location: acceuil.php');
 							}
 						}
 				}
 		?>
+	</body>
 	<div id="copyright">
 		<div class="conteneur">
 		<p>Copyright @DUT R&T 2ème année Projet Data Scientist- <a href="">Mentions légales</a> - <a href="">Plan du site</a></p>
