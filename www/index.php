@@ -15,7 +15,7 @@
 		<?php
 			if (!isset($_POST['pseudo'])) //On est dans la page de formulaire
 				{
-					echo '<h1>Connectez vous</h1>
+					echo '<h1>Connectez vous</h1><ul><li><a href="inscription.php">Inscription</a></li></ul>
 					<br><br><form method="post" action="index.php">
 					<fieldset>
 					<legend>Connexion</legend>
@@ -24,12 +24,13 @@
 					<label for="password">Mot de Passe :</label><input type="password" name="password" id="password" />
 					</p>
 					</fieldset>
-					<p><input type="submit" value="Connexion" /></p></form>  
+					<p><input type="submit" value="Connexion" /></p>
+
 				    </form> ';
 				} 
 				    else{
 						    $message='';
-						    if (empty($_POST['pseudo']) || empty($_POST['password']) ) //Oublie d'un champ
+						    if (empty($_POST['pseudo']) || empty($_POST['password']) ) //Oublie d\'un champ
 						    {
 						        $message = '<p>une erreur s\'est produite pendant votre identification.
 							Vous devez remplir tous les champs</p>

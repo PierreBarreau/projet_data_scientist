@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+   
+   
+    <title>INSCRIPTION</title>
+   
+    <link href="connection.css" rel="stylesheet"/>
+    <meta charset="utf-8">
+   
+</head>
+<body>
+   
+<h1>Inscription<h1>
+
+	  <form method="post" action="inscription.php">
+            <fieldset>
+            <legend>Inscription</legend>
+            <p>
+                <label for="nom">Nom :</label><input name="nom" type="text"/><br/><br>
+                <label for="prenom">Prénom :</label><input name="prenom" type="text"/><br/><br>
+                <label for="mail">Adresse mail :</label><input name="mail" type="email"/><br/><br>
+                <label for="password">Mot de Passe :</label><input type="password" name="password"/><br/><br>
+                <label for="reppassword">Répeter mot de passe:</label><input type="password" name="reppassword"/><br/><br>
+            </p>
+            </fieldset>
+            <p><input type="submit" value="Valider" /></p></form>  
+        </form> 
+     <?php
+      
+if (isset($_POST['submit']))
+{
+   /* on test si les champ sont bien remplis */
+    if(!empty($_POST['Nom']) and !empty($_POST['Prenom']) and !empty($_POST['email']) and !empty($_POST['password']) and !empty($_POST['repeatpassword']))
+    {
+        /* on test si le mdp contient bien au moins 6 caractère */
+        if (strlen($_POST['password'])>=6)
+        {
+            /* on test si les deux mdp sont bien identique */
+            if ($_POST['password']==$_POST['repeatpassword'])
+            {
+                // On crypte le mot de passe
+                $_POST['password']= md5($_POST['password']);
+                // on se connecte à MySQL et on sélectionne la base
+                $c = new mysqli("127.0.0.1","root","","ecobank");
+                //On créé la requête
+                $sql = "INSERT INTO newclient VALUES ('".$_POST['id']."','".$_POST['Nom']."','".$_POST['Prenom']."','".$_POST['email']."','".$_POST['password']."')";
+                 
+                /* execute et affiche l'erreur mysql si elle se produit */
+                if(!$c->query($sql))
+                {
+                    printf("Message d'erreur : %s\n", $c->error);
+                }
+            // on ferme la connexion
+            mysqli_close($c);
+            }
+            else echo "Les mots de passe ne sont pas identiques";
+        }
+        else echo "Le mot de passe est trop court !";
+    }
+    else echo "Veuillez saisir tous les champs !";
+}
+?>
+</body>
+</html>
