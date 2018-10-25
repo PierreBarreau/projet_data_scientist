@@ -14,7 +14,7 @@ session_start();
 	<body>
 		<?php
 		echo "<h1>";
-		echo $_SESSION['pseudo'];
+		echo $_SESSION['id'];
 		echo "</h1>";
 		?>
 		<br><br><br>

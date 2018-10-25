@@ -13,7 +13,7 @@
 	</head>
 	<?php
 	include 'fonctions.php';
-	$nom = $_SESSION['nom'];
+	$nom = $_SESSION['id'];
 	if (Connect($nom)){
 		echo"<body>";
 		echo "<nav>
@@ -34,7 +34,7 @@
 					</li>
 					<li>
 						<a href=\"compte.php\">Compte : ";
-						echo $_SESSION['pseudo'];
+						echo $_SESSION['id'];
 						echo "</a>
 					</li>	
 				</ul>
@@ -44,9 +44,7 @@
 		<div class=\"conteneur\">
 			<h1>Data Scientist Project</h1>";
 				echo "Vous êtes connecté en tant que ";
-				echo $_SESSION['prenom'];
-				echo " ";
-				echo $_SESSION['nom'];
+				echo $_SESSION['id'];
 			echo "<p>Projet tuteuré de Mathieu TERMET, Mouhamed NDAO et Pierre BARREAU</p>
 			<a id=\"en_savoir_plus\" href=\"contact.php\">en savoir plus</a>
 		</div>
@@ -54,7 +52,7 @@
 	</body>";
 	}
 	else {
-		echo "<h1>Vous n'êtes pas connectés</h1><br><br><br>
+		echo "<h1>Vous n'êtes pas connecté</h1><br><br><br>
 			<p>Ce site n'est accessible qu'aux personnes ayant un identifiant.<br><br>
 			Si vous estimez qu'il s'agit d'une erreur vous pouvez contacter Mme Prigent.</p>";
 	}
