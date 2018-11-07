@@ -18,7 +18,7 @@
 			<h1>Interdit</h1>
 			<br><br><p>Nous n'avons pas pu vous connectez à cette page, le niveau d'accès de celle-ci est trop élevé. <br>
 			Vous ne bénéfiniez pas de droit d'accès suffisant</p><br><br><br>
-			<p>Il peut cependant s'agir d'une erreur. Si vous pensez que c'est le cas, vous pouvez vous adressez à Mme Prijent ou 
+			<p>Il peut cependant s'agir d'une erreur. Si vous pensez que c'est le cas, vous pouvez vous adressez à Mme Prigent ou 
 				envoyer un mail à l'adresse jpo2010.rt@gmail.com</p>
 				<?php
 		}
@@ -31,7 +31,7 @@
 				<input name="userfile" type="file" value="table"/>
 				<inupt name="submit" type="submit" valut="importer"/>
 			</form>
-			<br><br><br><p>Nous nous excusons mais cette partie du site n'est pas encore fonctionnelle. Pour plus d'informations vous pouvez vous adressez à Mme Prijent ou envoyer un mail à l'adresse jpo2010.rt@gmail.com</p>
+			<br><br><br><p>Nous nous excusons mais cette partie du site n'est pas encore fonctionnelle. Pour plus d'informations vous pouvez vous adressez à Mme Prigent ou envoyer un mail à l'adresse jpo2010.rt@gmail.com</p>
 			<?php
 		}
 		?>
