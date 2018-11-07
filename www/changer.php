@@ -26,6 +26,11 @@
 		{
 			?>
 			<h1>Ajout et modification de promotion</h1>
+			<h3>Veuillez choisir un fichier .csv et respectez la mise en forme pour ne pas causer de problèmes</h3>
+			<form method="post" action="import.php">
+				<input name="userfile" type="file" value="table"/>
+				<inupt name="submit" type="submit" valut="importer"/>
+			</form>
 			<br><br><br><p>Nous nous excusons mais cette partie du site n'est pas encore fonctionnelle. Pour plus d'informations vous pouvez vous adressez à Mme Prijent ou envoyer un mail à l'adresse jpo2010.rt@gmail.com</p>
 			<?php
 		}
