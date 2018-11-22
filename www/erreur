@@ -1,0 +1,27 @@
+Pour règler l'erreur du serveur qu'on ne peut pas accéder : "Forbidden You don't have permission to access / on this server."
+
+Plusieurs possibilités: 
+
+	1 -> Faire un chmod 777 sur le répertoire contenant le site ("/var/www/html")
+		Syntaxe :  "chmod chmod -R 777 /var/www"
+
+
+Si en actualisant on n'accède pas à la page (adresse introuvable):
+
+	Connexion en root et en entre la commande "service apache2 restart"
+
+
+Pour copier les fichiers sur le serveur en utilisant scp:
+	
+	scp -r /var/www/ userbdd@148.60.210.81:/home/userbdd/
+
+Ce qui a été copié est visible dans le répertoire /home/userbdd/ avec pour nom www/
+
+Il faut ensuite supprimer le contenu sur le serveur de /var/www/html/ et le remplacer par celui que nous venons de copier sur le serveur. Pour cela on utilise: 
+	
+	rm -R /var/www/html/ 						le -R permet la récursivité de l'action (on supprime un 												répertoire et son contenu)
+
+Ensuite on copie dans le répertoire /var/www/ le nouveau site:
+
+	cp -r /home/userbdd/www/ /var/www/html/ 	cela permet également de renommer en html/ le répertoire que 													l'on vient de télécharger. En effet, dans la configuration du 													serveur, celui-ci cherche l'index dans /var/www/html donc si on 												souhaite rendre facile l'utilisation du site, il est nécessaire 												de respecter la configuration du serveur.
+	

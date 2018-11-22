@@ -54,10 +54,6 @@
 								$req->execute(array(
 								    'mail' => $mail));
 								$resultat = $req->fetch();
-								echo "Ce qui a été entré ";
-								echo $pwd;
-								echo " ce qui était dans la base de donnée ";
-								echo $resultat['mot_de_passe'];
 								$isPasswordCorrect = strcmp($pwd, $resultat['mot_de_passe']);
 								if (!$resultat)
 								{
@@ -79,12 +75,13 @@
 									echo "<br><br><br>Resultat de la comparaison des mots de passe: ";
 									echo $isPasswordCorrect;
 								    if ($isPasswordCorrect==0) {
-								    	$req2 = $bdd->prepare('SELECT nom, prenom, rang FROM compte WHERE mail = :mail');
+								    	$req2 = $bdd->prepare('SELECT nom, prenom, rang, mail FROM compte WHERE mail = :mail');
 										$req2->execute(array(
 										    'mail' => $mail));
 										$resultat2 = $req2->fetch();
 										$id= $resultat2['nom'] . " " . $resultat2['prenom'];
 								        $_SESSION['id'] = $id;
+								        $_SESSION['mail']=$resultat2['mail'];
 								        $_SESSION['rang'] = $resultat2['rang'];
 								        header('Location: acceuil.php');
 								    }
