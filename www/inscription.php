@@ -15,7 +15,7 @@
 
 	  
      <?php
-     $rang = 4; //rang par défaut 
+     $rang = 5; //rang par défaut 
       include('conection_bdd.php');
       include ('fonctions.php');
 if (isset($_POST['prenom']))        //On regarde si l'utilisateur a déjà rempli le formulaire, si oui on fait des tests pour voir si les données peuvent être envoyées
@@ -38,28 +38,9 @@ if (isset($_POST['prenom']))        //On regarde si l'utilisateur a déjà rempl
                 $pass = $_POST['password'];
 
                 //on vérifie que le compte existe pas
-                $requete = "SELECT mail FROM compte WHERE EXISTS (SELECT mail FROM compte WHERE mail = \"$mail\")";
-                echo $requete;
-                $repp = $bdd->query($requete);
-                if($mail == $repp){
-                    echo "Quelqu'un possède déjà cette adresse e-mail <br><br>";
-                    ?>
-                    <form method="post" action="inscription.php">
-                        <fieldset>
-                        <legend>Inscription</legend>
-                        <p>
-                            <label for="nom">Nom :</label><input name="nom" type="text"/><br/><br>
-                            <label for="prenom">Prénom :</label><input name="prenom" type="text"/><br/><br>
-                            <label for="mail">Adresse mail :</label><input name="mail" type="email"/><br/><br>
-                            <label for="password">Mot de Passe :</label><input type="password" name="password"/><br/><br>
-                            <label for="reppassword">Répeter mot de passe:</label><input type="password" name="reppassword"/><br/><br>
-                        </p>
-                        </fieldset>
-                        <p><input type="submit" value="Valider" /></p></form>  
-                    </form> 
-                    <?php
-                }
-                else{
+                $requete = $bdd->query("SELECT COUNT(*) FROM compte WHERE mail = \"$mail\"");
+                $rep = $requete -> fetch();
+                if($rep[0] == 0){
                     //on prepare une requête et on envoie
                     $req = $bdd->prepare('INSERT INTO compte (nom, prenom, mail, rang, mot_de_passe) VALUES(:nom, :prenom, :mail, :rang, :mot_de_passe)');
 
@@ -77,9 +58,9 @@ if (isset($_POST['prenom']))        //On regarde si l'utilisateur a déjà rempl
 
                         ));
                     /* execute et affiche l'erreur mysql si elle se produit */
-                    $requete = "SELECT EXIST(SELECT mail FROM 'compte' WHERE mail = ".$mail.")";
+                    $requete = "SELECT COUNT(*) FROM compte WHERE mail = \"$mail\"";
                     $repp = $bdd->query($requete);
-                    if($mail == $repp)
+                    if($repp != 0)
                     {
                         printf("Vous avez bien été ajouté à la base de donnée.");
                         printf("Veuillez vous connecter.");
@@ -92,6 +73,24 @@ if (isset($_POST['prenom']))        //On regarde si l'utilisateur a déjà rempl
                         printf("Nous n'avons pas réussi à vous ajouter à la base de donnée. Veuillez réessayez plus tard. Si cette erreur se répète veuillez en informer le groupe de projet.");
                         printf("Message d'erreur : %s\n", $bdd->error);
                     }
+                }
+                else{
+                     echo "Quelqu'un possède déjà cette adresse e-mail <br><br>";
+                    ?>
+                    <form method="post" action="inscription.php">
+                        <fieldset>
+                        <legend>Inscription</legend>
+                        <p>
+                            <label for="nom">Nom :</label><input name="nom" type="text"/><br/><br>
+                            <label for="prenom">Prénom :</label><input name="prenom" type="text"/><br/><br>
+                            <label for="mail">Adresse mail :</label><input name="mail" type="email"/><br/><br>
+                            <label for="password">Mot de Passe :</label><input type="password" name="password"/><br/><br>
+                            <label for="reppassword">Répeter mot de passe:</label><input type="password" name="reppassword"/><br/><br>
+                        </p>
+                        </fieldset>
+                        <p><input type="submit" value="Valider" /></p></form>  
+                    </form> 
+                    <?php
                 }
             }
             else echo "Les mots de passe ne sont pas identiques";

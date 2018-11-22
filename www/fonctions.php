@@ -41,7 +41,7 @@
 		//==========
 		 
 		//=====Envoi de l'e-mail.
-		mail($mail,$sujet,$message,$header);
+		mail($dest,$sujet,$message,$header);
 		//==========
 	}
 ?>
